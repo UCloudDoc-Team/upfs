@@ -8,15 +8,20 @@
   * [支持地域](/upfs/upfs_manual_instruction/region)
   * [产品限制](/upfs/upfs_manual_instruction/limit)
 * 操作指南
-  * [创建文件系统](/upfs/upfs_guide/create)
-  * [挂载点管理](/upfs/upfs_guide/mount_point)
+  * 管理文件系统
+    * [创建文件系统](/upfs/upfs_guide/create)
+    * [删除文件系统](/upfs/upfs_guide/delete)
+    * [扩容文件系统](/upfs/upfs_guide/extend)
+    * [查询文件系统](/upfs/upfs_guide/describe)
   * 挂载文件系统
+    * [挂载概述](/upfs/upfs_guide/overview_mount)
     * [Linux](/upfs/upfs_guide/linux_mount)
-    * [Windows](/upfs/upfs_guide/windows_mount)
+    * [K8s](/upfs/upfs_guide/k8s_mount)
   * 卸载文件系统
     * [Linux](/upfs/upfs_guide/linux_umount)
-    * [Windows](/upfs/upfs_guide/windows_umount)
+    * [K8s](/upfs/upfs_guide/k8s_umount)
 * [其他功能](/upfs/other)
 * [产品价格](/upfs/price)
 * [产品性能](/upfs/performance)
 * [FAQ](/upfs/faq)
+
