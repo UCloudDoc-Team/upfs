@@ -1,24 +1,25 @@
-<!-- 请勿添加产品标题，标题行将由系统自动增加，名称将于您申请邮件提供的仓库名称一致 -->
-
-* [概览](/仓库名称/README.md)
-* 产品介绍   <!-- 以下是参考的目录模版，旨在建议产品文档应该包含的内容模块。实际章节划分可根据实际内容进行调整 -->
-   * [什么是云主机](相对链接)
-   * [功能与优势](相对链接)
-   * [应用场景](相对链接)
-* 计费
-   * [计费模式](相对链接)
-   * [定价表](相对链接)
-   * [配置变更](相对链接)
-   * [续费](相对链接)
-   * [退款](相对链接)
-* 注意事项与使用限制
-   * [注意事项描述](相对链接)
-* 创建第一台云主机
-   * [创建资源](相对链接)
+* [概览](/upfs/README)
+* 产品简介
+  * [产品概述](/upfs/upfs_manual_instruction/summarize)
+  * [产品优势](/upfs/upfs_manual_instruction/advantage)
+  * [应用场景](/upfs/upfs_manual_instruction/application)
+  * [主要概念](/upfs/upfs_manual_instruction/concept)
+  * [支持地域](/upfs/upfs_manual_instruction/region)
+  * [产品限制](/upfs/upfs_manual_instruction/limit)
 * 操作指南
-   * [创建](相对链接)
-   * [管理](相对链接)
-* 常见问题
-   * 场景相关 <!-- 平台已支持三级及以下目录收起展开，为确保点击区域充分，包含三级目录的二级标题请勿添加链接 -->
-      * [问题描述](相对链接)
-* [词汇表](/仓库名称/_glossary.md)
+  * 管理文件系统
+    * [创建文件系统](/upfs/upfs_guide/create)
+    * [删除文件系统](/upfs/upfs_guide/delete)
+    * [扩容文件系统](/upfs/upfs_guide/extend)
+    * [查询文件系统](/upfs/upfs_guide/describe)
+  * 挂载文件系统
+    * [挂载概述](/upfs/upfs_guide/overview_mount)
+    * [Linux](/upfs/upfs_guide/linux_mount)
+    * [K8s](/upfs/upfs_guide/k8s_mount)
+  * 卸载文件系统
+    * [Linux](/upfs/upfs_guide/linux_umount)
+    * [K8s](/upfs/upfs_guide/k8s_umount)
+* [其他功能](/upfs/other)
+* [产品价格](/upfs/price)
+* [产品性能](/upfs/performance)
+* [FAQ](/upfs/faq)
