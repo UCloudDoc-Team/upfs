@@ -11,7 +11,7 @@
     * [创建文件系统](/upfs/upfs_guide/create)
     * [删除文件系统](/upfs/upfs_guide/delete)
     * [扩容文件系统](/upfs/upfs_guide/extend)
-    * [查询文件系统](/upfs/upfs_guide/describe)
+    * [查询文件系统详情](/upfs/upfs_guide/describe)
   * 挂载文件系统
     * [挂载概述](/upfs/upfs_guide/overview_mount)
     * [Linux](/upfs/upfs_guide/linux_mount)
