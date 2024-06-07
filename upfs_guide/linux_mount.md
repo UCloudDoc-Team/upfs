@@ -58,13 +58,13 @@ mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount
 
 除此之外，还可在挂载时通过-o添加额外选项（选项之间使用逗号分割），以下列出所有的可选项：
 
-选项名称  |     作用描述
--|:-:
-ro | 只读模式
-rw | 读写模式  
-_netdev | 表示待挂载的文件系统是网络文件系统
-nosuid | 将文件的 Set User ID（SUID）位置为0
-conf=/conf/path| 指定配置文件，默认配置文件路径/etc/upfs_client.ini
+| 选项名称            | 作用描述                                |
+|-----------------|-------------------------------------|
+| ro              | 只读模式                                |
+| rw              | 读写模式      |                          
+| _netdev         | 表示待挂载的文件系统是网络文件系统     |              
+| nosuid          | 将文件的 Set User ID（SUID）位置为0    |      
+| conf=/conf/path | 指定配置文件，默认配置文件路径/etc/upfs_client.ini |
 
 示例：
 
@@ -73,12 +73,13 @@ mount -t upfs 100.64.240.95:10109,100.64.240.97:10109:/upfs-yc3ae1gwpwg /mnt  -o
 ```
 
 以下列出配置文件中的一些可选项（**注： 配置文件中的选项均不建议修改，日志文件路径变更会导致程序不可用。**）：
-选项名称  |     作用描述
--|:-:
-fuse_file_entry_timeout | lookup/reddirplus返回的文件项属性有效时间
-fuse_dir_entry_timeout | lookup/reddirplus返回的目录项属性有效时间 
-fuse_attr_timeout | 返回给fuse的文件attribute和dir entry的超时时间，0则不缓存
-fuse_direct_io | 设置为1强制所有打开的文件为direct_io，设置为0会根据打开文件是否有O_DIRECT flag返回是否使用direct_io
+
+|选项名称  |     作用描述|
+|-|:-:|
+|fuse_file_entry_timeout | lookup/reddirplus返回的文件项属性有效时间|
+|fuse_dir_entry_timeout | lookup/reddirplus返回的目录项属性有效时间 |
+|fuse_attr_timeout | 返回给fuse的文件attribute和dir entry的超时时间，0则不缓存|
+|fuse_direct_io | 设置为1强制所有打开的文件为direct_io，设置为0会根据打开文件是否有O_DIRECT flag返回是否使用direct_io|
 
 ## 步骤三、挂载状态查看
 
