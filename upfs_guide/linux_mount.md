@@ -50,7 +50,7 @@ cd  upfs_client-v2.0 && ./install.sh
 
 ## 步骤二、挂载文件系统
 
-执行以下命令即可挂载文件系统。
+执行以下命令即可挂载文件系统。 
 
 ```shell
 mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount 
