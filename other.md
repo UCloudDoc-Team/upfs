@@ -2,7 +2,7 @@
 
 ### Upfsiostat监控工具
 
-为更好的监控客户端和UPFS文件系统之间的I/O和MetaData的数据传输速率、延时、操作数量等信息，UCLOUD提供了Upfsiostat性能监控工具，Upfsiostat是一个用于监视和报告UPFS文件系统I/O和MetaData性能的工具。通过Upfsiostat工具，用户可以直观了解到UPFS文件系统的性能状况。
+为更好的监控客户端和UPFS文件系统之间的I/O和MetaData的数据传输速率、延时、操作数量等信息，UCloud提供了Upfsiostat性能监控工具，Upfsiostat是一个用于监视和报告UPFS文件系统I/O和MetaData性能的工具。通过Upfsiostat工具，用户可以直观了解到UPFS文件系统的性能状况。
 
 如需要提供其他客户端监控功能请联系技术支持。
 

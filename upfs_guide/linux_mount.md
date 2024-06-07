@@ -61,7 +61,7 @@ mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount
 |--------------|--------------------------|
 | mount             | 挂载命令关键字                  |
 | -t upfs             | 表明挂载的文件系统类型是upfs         |
-| <mount_address1>,<mount_address2>/<resource_id>             | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
+| <mount_address1>,<mount_address2>/<resource_id>  | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
 | /path/to/mount            | 要挂载到的本地路径，请确保该目录没有被其它文件系统挂载        |
 
 
@@ -85,4 +85,5 @@ mount -t upfs 100.64.240.95:10109,100.64.240.97:10109:/upfs-yc3ae1gwpwg /mnt  -o
 
 ![](/images/upfs_guide/linux_mount1.png)
 
-** 如果挂载有问题，请及时联系UCloud技术支持。**
+**如果挂载有问题，请及时联系UCloud技术支持。**
+    
