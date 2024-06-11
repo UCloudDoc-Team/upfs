@@ -10,4 +10,4 @@
 
 说明
 - UPFS公测期目前不支持缩容
-- UPFS扩容的容量也需要符合产品限制，具体限制请见[产品限制](/upfs/upfs_manual_instruction/limit)
+- UPFS扩容的容量也需要符合产品容量限制，具体容量限制请见[产品限制](/upfs/upfs_manual_instruction/limit)
