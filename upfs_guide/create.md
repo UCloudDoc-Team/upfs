@@ -19,13 +19,14 @@
 
 ![](/images/upfs_guide/create3.png)
 
-需要注意以下几点：
+ 创建文件系统注意以下几点：
 
- 1. 目前 UPFS 仅支持POSIX协议，应用场景详情可参考[应用场景](/upfs/upfs_manual_instruction/application)和[产品限制](/upfs/upfs_manual_instruction/limit)章节。确认产品细节后点击『立即购买』并进行支付确认。
- 2. 为保证 UPFS 达到最佳的性能体验，推荐UPFS和云主机UHost部署在同可用区。
- 3. 创建时的容量限制可参考[产品限制](/upfs/upfs_manual_instruction/limit)
+   1. 目前 UPFS 仅支持POSIX协议，应用场景详情可参考[应用场景](/upfs/upfs_manual_instruction/application)章节。确认产品细节后点击『立即购买』并进行支付确认。
+   2. 为保证 UPFS 达到最佳的性能体验，推荐UPFS和云主机UHost部署在同可用区。
+   3. 创建时的容量限制可参考[产品限制](/upfs/upfs_manual_instruction/limit)章节。
 
 #### 步骤五、创建完成后展示实例列表
 
 ![](/images/upfs_guide/create4.png)
 
+**如果创建文件系统有问题，请及时联系UCloud技术支持。**
