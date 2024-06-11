@@ -8,7 +8,7 @@
 
 ## 步骤二、卸载文件系统
 
-1.执行 ```umount <mounted_path>```, 以上图为例，此时卸载所需执行的命令为 ```umount /mnt```
+1.执行 ```umount <mounted_path>```, 以上图为例，此时卸载所需执行的命令为 ```umount /mnt``` 。
 
 
 
