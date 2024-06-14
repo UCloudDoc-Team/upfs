@@ -74,7 +74,11 @@ kubectl apply -f storageclass.yaml
 ```
 
 ## 步骤四、创建POD使用UPFS文件系统
- 创建一个POD来使用UPFS文件系统，配置文件内容参考如下，并为配置文件命名```pod.yaml```（文件名可自定义）。
+ 1. 创建一个POD来使用UPFS文件系统，配置文件内容参考如下，并为配置文件命名```pod.yaml```（文件名可自定义），需要注意以下几点：
+
+   - containers: 配置信息，根据实际情况配置
+   - mountPath: containers⾥挂载UPFS的路径
+   - claimName: 这⾥需要指定为步骤三中创建的UPFS PVC的名称
 
 ```yaml
 apiVersion: v1
@@ -96,22 +100,25 @@ spec:
         claimName: logupfs-claim
 ```
 
- 执行以下命令创建POD：
+ 2. 执行以下命令创建POD：
 
 ```shell
 kubectl apply -f pod.yaml
 ```
+UPFS支持多POD挂载访问UPFS文件系统，同理创建多POD配置文件如上。
 
 ## 步骤五、验证POD是否正常运行
 
-1.执行以下命令进入上一步创建的POD。
+ 1. 执行以下命令进入上一步创建的POD。
 
 ```shell
 kubectl exec -it <POD名字> /bin/bash
 ```
-2.执行以下命令查看文件系统是否挂载，如下图，如果图中出现步骤三中需要挂载的文件系统资源ID表示挂宅成功。
+ 2. 执行以下命令查看文件系统是否挂载，如下图，如果图中出现步骤三中需要挂载的文件系统资源ID表示挂宅成功。
 
 ```shell
 kubectl apply -f pod.yaml
 ```
 ![](/images/upfs_guide/k8s_mount2.png)
+
+**如果挂载文件系统有问题，请及时联系UCloud技术支持。**
