@@ -2,7 +2,7 @@
 
 ## 步骤一、安装客户端
 
-客户端安装步骤请查看[UPFS客户端安装](/upfs/upfs_guide/client_install.md)。
+K8s方式挂载时，需要先在K8s所有的 work node上安装好UPFS的客户端，客户端安装步骤请查看[UPFS客户端安装](/upfs/upfs_guide/client_install.md)。
 
 
 ## 步骤二、安装csi工具包
@@ -32,7 +32,7 @@ kubectl apply -f csi-node.yml
 kubectl get po -A | grep upfs
 ```
 
-   如果有如下图片展示pod的信息，且状态为 Running，说明安装成功。
+   如果有如下图片展示POD的信息，且状态为 Running，说明安装成功。
 
    ![](/images/upfs_guide/k8s_mount1.png)
 
