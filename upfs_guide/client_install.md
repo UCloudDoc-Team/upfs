@@ -12,19 +12,19 @@ UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE�
 如果是 CentOS 系统的主机，请执行以下命令安装：
 
 ```shell
-yum install upfs_client_v2.0-2.0-1
+yum install upfs_client_v1.0
 ```
 
 如果是 Ubuntu/Debian 系统的主机，请执行以下命令安装：
 
 ```shell
-apt install upfs_client_v2.0-2.0-1
+apt install upfs_client_v1.0
 ```
 
 如果是 Rocky 系统的主机，请执行以下命令安装：
 
 ```shell
-dnf install upfs_client_v2.0-2.0-1
+dnf install upfs_client_v1.0
 ```
 
 ### 方式二、通过客户端安装包安装
