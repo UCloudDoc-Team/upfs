@@ -34,19 +34,19 @@ dnf install upfs_client_v2.0-2.0-1
 1.下载安装包
 
 ```shell
-wget https://upfs-public.cn-bj.ufileos.com/upfs_client-v2.0.tar.gz
+wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-v1.tar.gz
 ```
 
 2.解压安装包
 
 ```shell
-tar zxvf upfs_client-v2.0.tar.gz
+tar zxvf upfs_client-public-v1.tar.gz
 ```
 
 3.执行安装脚本
 
 ```shell
-cd  upfs_client-v2.0 && ./install.sh
+cd upfs_client-public-v1 & ./install.sh
 ```
 
 注意事项：
