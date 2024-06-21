@@ -66,7 +66,7 @@ tar zxvf upfs_client-public-v1.tar.gz
 cd ./upfs_client-public-v1 && ./install.sh
 ```
 
-  请注意如果操作系统类型为Ubuntu，需要使用root权限执行。
+  请注意如果操作系统类型为Ubuntu，需要使用root权限执行，请参考如下命令：
 
 ```shell
 cd ./upfs_client-public-v1 && sudo ./install.sh
