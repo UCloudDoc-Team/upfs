@@ -26,8 +26,6 @@
     | ```<mount_address1>,<mount_address2>/<resource_id>``` | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
     | ```/path/to/mount```           | 要挂载到的本地路径，请确保该目录没有被其它文件系统挂载        |
 
-
-
     除此之外，还可在挂载时通过 ```-o``` 添加额外选项（选项之间使用逗号分割），以下列出所有的可选项：
     
     | 选项名称            | 作用描述                                |
