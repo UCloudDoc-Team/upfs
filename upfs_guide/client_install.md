@@ -36,19 +36,19 @@ dnf install upfs_client_v1.0
 
 当系统安装源缺失或系统发现版本较低，无法通过包管理器安装依赖时，也可以通过下载提供的安装包手动安装客户端。
 
-1.下载安装包
+1.下载安装包。
 
 ```shell
 wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-v1.tar.gz
 ```
 
-2.解压安装包
+2.解压安装包。
 
 ```shell
 tar zxvf upfs_client-public-v1.tar.gz
 ```
 
-3.执行安装脚本
+3.执行安装脚本，请注意如果操作系统类型为Ubuntu，您首先需要获取root权限。
 
 ```shell
 cd upfs_client-public-v1 & ./install.sh
