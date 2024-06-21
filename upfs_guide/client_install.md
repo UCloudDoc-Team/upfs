@@ -7,18 +7,23 @@ UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE�
 
 通过包管理器安装时请确保您的安装源为UCloud提供的官方安装源。
 
-对于使用CentOS8/7, Ubuntu22.04/20.04, Debian11, Rocky9/8的用户，推荐使用该方式安装客户端。
+对于使用CentOS8/7, Rocky8的用户，推荐使用该方式安装客户端，请注意公测期支持通过包管理器安装客户端的云主机操作系统镜像版本限制如下表，如果您的业务云主机操作系统版本不在下表之中，我们推荐您使用方式二安装客户端。
+
+| 操作系统类型 | 操作系统版本         |        
+|--------|----------------|
+| CentOS | CentOS 7.2 64位 |
+| CentOS | CentOS 7.3 64位 |
+| CentOS | CentOS 7.4 64位 |
+| CentOS | CentOS 7.6 64位 |
+| CentOS | CentOS 7.8 64位 |
+| CentOS | CentOS 7.9 64位 |
+| CentOS | CentOS 8.0 64位 |
+| Rocky| Rocky 8.5 64位 |
 
 如果是 CentOS 系统的主机，请执行以下命令安装：
 
 ```shell
 yum install upfs_client_v1.0
-```
-
-如果是 Ubuntu/Debian 系统的主机，请执行以下命令安装：
-
-```shell
-apt install upfs_client_v1.0
 ```
 
 如果是 Rocky 系统的主机，请执行以下命令安装：
@@ -50,5 +55,5 @@ cd upfs_client-public-v1 & ./install.sh
 ```
 
 注意事项：
-  - Linux方式挂载和K8s挂载以上两种方式都可以使用。
-  - K8s挂载安装客户端时，需要在所有的K8s work node 上安装好UPFS客户端。
+  - 通过Linux方式挂载或者K8s挂载时，在安装客户端时，可参考以上两种方式。
+  - 通过K8s挂载时安装客户端时，需要在所有的K8s work node 上安装好UPFS客户端。
