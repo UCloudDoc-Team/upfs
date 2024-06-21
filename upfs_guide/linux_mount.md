@@ -6,34 +6,40 @@
 
 ## 步骤二、挂载文件系统
 
-执行以下命令即可挂载文件系统。 
+ - 若挂载的云主机操作系统为Ubuntu系统，必须使用sudo命令挂载，再次挂载前需要删除/var/tmp目录下的<resource_id>.sock与<resource_id>.sock.lock文件。
 
-```shell
-mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount 
-```
-命令行字段含义解析如下：
+    ```shell
+    sudo mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount 
+    ```
 
-| 命令行字段 | 解释                       |
-|--------------|--------------------------|
-| ```mount```             | 挂载命令关键字                  |
-| ```-t upfs```             | 表明挂载的文件系统类型是upfs         |
-| ```<mount_address1>,<mount_address2>/<resource_id>``` | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
-| ```/path/to/mount```           | 要挂载到的本地路径，请确保该目录没有被其它文件系统挂载        |
+ - 若挂载的云主机操作系统非Ubuntu系统，执行以下命令即可挂载文件系统： 
+
+    ```shell
+    mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount 
+    ```
+    命令行字段含义解析如下：
+    
+    | 命令行字段 | 解释                       |
+    |--------------|--------------------------|
+    | ```mount```             | 挂载命令关键字                  |
+    | ```-t upfs```             | 表明挂载的文件系统类型是upfs         |
+    | ```<mount_address1>,<mount_address2>/<resource_id>``` | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
+    | ```/path/to/mount```           | 要挂载到的本地路径，请确保该目录没有被其它文件系统挂载        |
 
 
 
-除此之外，还可在挂载时通过 ```-o``` 添加额外选项（选项之间使用逗号分割），以下列出所有的可选项：
+    除此之外，还可在挂载时通过 ```-o``` 添加额外选项（选项之间使用逗号分割），以下列出所有的可选项：
+    
+    | 选项名称            | 作用描述                                |
+    |-----------------|-------------------------------------|
+    | ```ro```              | 只读模式                                |
+    | ```rw```              | 读写模式      |
 
-| 选项名称            | 作用描述                                |
-|-----------------|-------------------------------------|
-| ```ro```              | 只读模式                                |
-| ```rw```              | 读写模式      |
-
-示例：
-
-```shell
-mount -t upfs 100.64.240.95:10109,100.64.240.97:10109:/upfs-yc3ae1gwpwg /mnt  -o ro
-```
+    示例：
+    
+    ```shell
+    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109:/upfs-yc3ae1gwpwg /mnt  -o ro
+    ```
 
 ## 步骤三、挂载状态查看
 
