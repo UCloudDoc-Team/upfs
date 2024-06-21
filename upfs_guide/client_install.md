@@ -20,17 +20,29 @@ UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE�
 | CentOS | CentOS 8.0 64位   |
 | Rocky| Rocky 8.5 64位    |
 
-如果是 CentOS 系统的主机，请执行以下命令安装：
+ - 如果是 CentOS 系统的主机，需要先执行以下命令保证包管理器版本为最新版本：
 
-```shell
-yum install upfs_client.x86_64
-```
+    ```shell
+    yum clean all && yum makecache
+    ```
 
-如果是 Rocky 系统的主机，请执行以下命令安装：
+   包管理器版本更新完成后，请执行以下命令安装UPFS客户端：
 
-```shell
-dnf install upfs_client.x86_64
-```
+    ```shell
+    yum install upfs_client
+    ```
+
+ - 如果是 Rocky 系统的主机，需要先执行以下命令保证包管理器版本为最新版本：
+
+    ```shell
+    dnf clean all && dnf makecache
+    ```
+
+   包管理器版本更新完成后，请执行以下命令安装UPFS客户端：
+
+    ```shell
+    dnf install upfs_client
+    ```
 
 ### 方式二、通过客户端安装包安装
 
