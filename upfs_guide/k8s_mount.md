@@ -6,6 +6,8 @@ K8s方式挂载时，需要先在K8s所有的 work node上安装好UPFS的客户
 
 
 ## 步骤二、安装csi工具包
+  
+  需要在master节点安装csi工具包，详细步骤请见下文。
 
   1. 获取csi工具包，在获取csi工具包前，先确认当前K8s集群配置了弹性外网Eip，确认无误后执行以下命令获取csi工具包。
 
@@ -37,6 +39,8 @@ kubectl get po -A | grep upfs
    ![](/images/upfs_guide/k8s_mount1.png)
 
 ## 步骤三、创建UPFS文件系统K8s集群配置文件
+
+  需要在master节点创建UPFS文件系统K8s集群配置文件，详细步骤请见下文。
 
   1. 这里需要创建StorageClass和PVC，配置文件参考下面的内容，并为配置文件命名 ```storageclass.yaml```（文件名可自定义），需要注意以下几点：
   
@@ -74,6 +78,9 @@ kubectl apply -f storageclass.yaml
 ```
 
 ## 步骤四、创建POD使用UPFS文件系统
+
+ 需要在master节点创建POD使用UPFS文件系统，详细步骤请见下文。
+
  1. 创建一个POD来使用UPFS文件系统，配置文件内容参考如下，并为配置文件命名```pod.yaml```（文件名可自定义），需要注意以下几点：
 
    - containers: 配置信息，根据实际情况配置
