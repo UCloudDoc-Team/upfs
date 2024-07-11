@@ -68,7 +68,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi  
+      storage: 10Gi  # UPFS存储空间理论上线较高，所以PV和PVC中的容量参数没有实际意义，这里的requests信息不会真实生效
 ```
 
   2. 执行以下命令创建StorageClass和PVC，
