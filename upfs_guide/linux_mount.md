@@ -36,7 +36,7 @@
     示例：
     
     ```shell
-    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109:/upfs-yc3ae1gwpwg /mnt  -o ro
+    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109/upfs-yc3ae1gwpwg /mnt  -o ro
     ```
 
 ## 步骤三、挂载状态查看
