@@ -121,7 +121,7 @@ UPFS支持多POD挂载访问UPFS文件系统，同理创建多POD配置文件如
 ```shell
 kubectl exec -it <POD名字> /bin/bash
 ```
- 2. 执行以下命令查看文件系统是否挂载，如下图，如果图中出现步骤三中需要挂载的文件系统资源ID表示挂宅成功。
+ 2. 执行以下命令查看文件系统是否挂载，如下图，如果图中出现步骤三中需要挂载的文件系统资源ID表示挂载成功。
 
 ```shell
 kubectl apply -f pod.yaml
