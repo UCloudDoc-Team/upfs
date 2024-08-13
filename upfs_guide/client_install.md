@@ -51,7 +51,7 @@ UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE�
 1.下载安装包。
 
 ```shell
-wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-v1.tar.gz
+wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-latest.tar.gz
 ```
 
 2.解压安装包。
