@@ -57,19 +57,19 @@ wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-latest.tar.gz
 2.解压安装包。
 
 ```shell
-tar zxvf upfs_client-public-v1.tar.gz
+tar zxvf upfs_client-public-latest.tar.gz
 ```
 
 3.执行安装脚本。
 
 ```shell
-cd ./upfs_client-public-v1 && ./install.sh
+cd ./upfs_client-public-latest && ./install.sh
 ```
 
   请注意如果操作系统类型为Ubuntu，需要使用root权限执行，请参考如下命令：
 
 ```shell
-cd ./upfs_client-public-v1 && sudo ./install.sh
+cd ./upfs_client-public-latest && sudo ./install.sh
 ```
 
 注意事项：
