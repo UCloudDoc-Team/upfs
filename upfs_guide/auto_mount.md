@@ -90,8 +90,4 @@ systemctl enable upfs_data.mount
 systemctl start upfs_data.mount
 ```
 
-### 步骤四，挂载状态查看
-
-<img width="398" alt="3" src="https://github.com/user-attachments/assets/0251b5a2-b0b8-47e2-8d0f-808101944886">
-
 **如果挂载文件系统有问题，请及时联系UCloud技术支持。**
