@@ -4,14 +4,14 @@
 
 客户端安装步骤请查看[UPFS客户端安装](https://github.com/UCloudDoc-Team/upfs/blob/master/upfs/upfs_guide/client_install.md)。
 
-## 步骤一，查看挂载信息
+## 步骤二，查看挂载信息
 
 通过执行 `df -h`获取文件系统对应的挂载路径
 
 ![1](https://github.com/user-attachments/assets/a7154290-b28b-499f-8b5c-ddd94feb76c1)
 
 
-## 步骤二，开机自动挂载配置
+## 步骤三，开机自动挂载配置
 
 编辑/etc/fstab文件，添加配置：
 
@@ -34,7 +34,7 @@
 |                     第一个0                     |    表示该文件系统是否会被 dump工具备份数据，请保持配置为0    |
 |                     第二个0                     |      表示该文件系统是否会被 fsck命令检查，请保持配置为0      |
 
-## 步骤三，挂载状态查看
+## 步骤四，挂载状态查看
 
 配置文件后，重启；
 
