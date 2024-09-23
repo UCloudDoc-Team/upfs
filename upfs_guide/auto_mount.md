@@ -5,14 +5,8 @@
 
 客户端安装步骤请查看[UPFS客户端安装](https://github.com/UCloudDoc-Team/upfs/blob/master/upfs/upfs_guide/client_install.md)。
 
-### 步骤二，查看挂载信息
 
-通过执行 `df -h`获取文件系统对应的挂载路径
-
-![1](https://github.com/user-attachments/assets/a7154290-b28b-499f-8b5c-ddd94feb76c1)
-
-
-### 步骤三，开机自动挂载配置
+### 步骤二，开机自动挂载配置
 
 编辑/etc/fstab文件，添加配置：
 
@@ -35,26 +29,20 @@
 |                     第一个0                     |    表示该文件系统是否会被 dump工具备份数据，请保持配置为0    |
 |                     第二个0                     |      表示该文件系统是否会被 fsck命令检查，请保持配置为0      |
 
-### 步骤四，挂载状态查看
+### 步骤三，挂载状态查看
 
-配置文件后，重启；
+配置文件后，执行命令`mount -a`,检查挂载状态
+![企业微信截图_cd3fa9ef-95ff-40f4-8e0f-7f5e0baf22c7](https://github.com/user-attachments/assets/6d3a272e-4db2-4011-a3c4-23c0c1a7d596)
 
-执行命令 `df -h` 即可查看挂载文件系统状态。若挂载成功，会看到upfs对于资源ID的条目，以及使用容量，挂载点等信息。
-
-![2](https://github.com/user-attachments/assets/cd62fdb0-4c1f-4a40-a11c-90aac6b98e5e)
 ## 方式二：使用 systemd.mount 实现自动挂载
 
 ### 步骤一
 
 参考方式一
 
-### 步骤二
+### 步骤二，配置文件
 
-参考方式一
-
-### 步骤三，配置文件
-
-创建文件 `/etc/systemd/system/juicefs.mount`，并添加以下内容：
+创建文件 `/etc/systemd/system/upfs_data.mount`，并添加以下内容：
 
 ```
 [Unit]
