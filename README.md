@@ -16,6 +16,7 @@
     * [挂载概述](/upfs/upfs_guide/overview_mount)
     * [Linux](/upfs/upfs_guide/linux_mount)
     * [K8s](/upfs/upfs_guide/k8s_mount)
+    * [自动挂载](/upfs/upfs_guide/auto_mount.md)
   * 卸载文件系统
     * [Linux](/upfs/upfs_guide/linux_umount)
     * [K8s](/upfs/upfs_guide/k8s_umount)
