@@ -32,7 +32,7 @@
 ### 步骤三，挂载状态查看
 
 配置文件后，执行命令`mount -a`,检查挂载状态
-![企业微信截图_cd3fa9ef-95ff-40f4-8e0f-7f5e0baf22c7](https://github.com/user-attachments/assets/6d3a272e-4db2-4011-a3c4-23c0c1a7d596)
+![](/images/upfs_guide/auto_mount1.png)
 
 ## 方式二：使用 systemd.mount 实现自动挂载
 
