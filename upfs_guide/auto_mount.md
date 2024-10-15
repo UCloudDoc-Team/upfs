@@ -58,7 +58,7 @@ TimeoutSec=30
 [Install]
 WantedBy=multi-user.target
 ```
-
+注意：mount 单元的名称必须根据其封装的文件系统挂载点路径命名。 例如 /upfs_data 挂载点对应的单元名称必须是 upfs_data.mount
 部分字段解释：
 
 
