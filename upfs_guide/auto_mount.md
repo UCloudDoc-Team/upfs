@@ -86,6 +86,6 @@ WantedBy=multi-user.target
 systemctl enable upfs_data.mount
 systemctl start upfs_data.mount
 ```
-
+![](/images/upfs_guide/auto_mount2.png)
 
 **如果挂载文件系统有问题，请及时联系UCloud技术支持。**
