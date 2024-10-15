@@ -47,6 +47,8 @@
 ```
 [Unit]
 Description=Mount upfs at boot
+After=network-online.target
+Wants=network-online.target
 
 [Mount]
 What=10.72.141.213:10109,10.72.141.215:10109/upfs
@@ -54,6 +56,9 @@ Where=/upfs_data
 Type=upfs
 Options=_netdev
 TimeoutSec=30
+
+[Service]
+ExecStartPre=/usr/bin/mkdir -p /upfs_data
 
 [Install]
 WantedBy=multi-user.target
@@ -71,6 +76,9 @@ WantedBy=multi-user.target
 |          Options           |    文件系统挂载选项，因为是网络文件系统，需要添加 _netdev    |
 |         TimeoutSec         |              指定挂载操作的超时时间，单位为秒。              |
 | WantedBy=multi-user.target | 指定该服务单元应该在哪个目标（target）下启动。`multi-user.target`表示在多用户模式下启动该服务 |
+| After=network-online.target| 确保网络在挂载之前已经可用 |
+| Wants=network-online.target| 确保网络完全启动，防止在网络未完全启动时尝试挂载网络存储 |
+| ExecStartPre=/usr/bin/mkdir -p /upfs_data| 确保 /upfs_data 挂载点目录在实际挂载之前被自动创建，避免因目录不存在而导致挂载失败。|
 
 **自动挂载命令：**
 
@@ -78,5 +86,6 @@ WantedBy=multi-user.target
 systemctl enable upfs_data.mount
 systemctl start upfs_data.mount
 ```
+
 
 **如果挂载文件系统有问题，请及时联系UCloud技术支持。**
