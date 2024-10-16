@@ -22,7 +22,7 @@
 
 |                   命令行字段                    |                             解释                             |
 | :---------------------------------------------: | :----------------------------------------------------------: |
-| ``` <mount_address1>,<mount_address2>/<resource_id> ``` | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
+| ```<mount_address1>,<mount_address2>/<resource_id>``` | 从UCloud控制台页面处获取的文件系统URL （URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分） |
 |                           ``` /path/to/mount```                    |                要挂载到的本地路径，请确保该目录没有被其它文件系统挂载                |
 |             ```upfs```                 |     表明挂载的文件系统类型是upfs       |          
 |                 ```_netdev```                   | 文件系统挂载选项，因为是网络文件系统，需要添加 _netdev，还支持 ro,rw |
