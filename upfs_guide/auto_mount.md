@@ -38,7 +38,7 @@
 
 ### 步骤一
 
-参考方式一
+参考方式一安装客户端
 
 ### 步骤二，配置文件
 
@@ -47,8 +47,6 @@
 ```
 [Unit]
 Description=Mount upfs at boot
-After=network-online.target
-Wants=network-online.target
 
 [Mount]
 What=10.72.141.213:10109,10.72.141.215:10109/upfs
@@ -57,13 +55,11 @@ Type=upfs
 Options=_netdev
 TimeoutSec=30
 
-[Service]
-ExecStartPre=/usr/bin/mkdir -p /upfs_data
-
 [Install]
 WantedBy=multi-user.target
 ```
-注意：mount 单元的名称必须根据其封装的文件系统挂载点路径命名。 例如 /upfs_data 挂载点对应的单元名称必须是 upfs_data.mount
+注意：mount 单元的名称必须根据其封装的文件系统挂载点路径命名。 例如 /mnt/upfs 自动挂载点对应的单元名称必须是 mnt-upfs.mount
+
 部分字段解释：
 
 
@@ -76,9 +72,6 @@ WantedBy=multi-user.target
 |          Options           |    文件系统挂载选项，因为是网络文件系统，需要添加 _netdev    |
 |         TimeoutSec         |              指定挂载操作的超时时间，单位为秒。              |
 | WantedBy=multi-user.target | 指定该服务单元应该在哪个目标（target）下启动。`multi-user.target`表示在多用户模式下启动该服务 |
-| After=network-online.target| 确保网络在挂载之前已经可用 |
-| Wants=network-online.target| 确保网络完全启动，防止在网络未完全启动时尝试挂载网络存储 |
-| ExecStartPre=/usr/bin/mkdir -p /upfs_data| 确保 /upfs_data 挂载点目录在实际挂载之前被自动创建，避免因目录不存在而导致挂载失败。|
 
 **自动挂载命令：**
 
@@ -88,4 +81,4 @@ systemctl start upfs_data.mount
 ```
 ![](/images/upfs_guide/auto_mount2.png)
 
-**如果挂载文件系统有问题，请及时联系UCloud技术支持。**
+**如果自动挂载文件系统有问题，请及时联系UCloud技术支持。**
