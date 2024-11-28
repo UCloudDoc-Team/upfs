@@ -1,7 +1,9 @@
 # 挂载文件系统(K8s)
 
 挂载须知：
+
    1.若使用的K8s产品为UCloud官方提供的UK8S产品服务，具体挂载方式请参考[UK8S挂载UPFS](https://docs.ucloud.cn/uk8s/volume/upfs)。
+
    2.若使用的K8s产品为自建K8s服务，具体挂载方式请参考下述挂载步骤。
 
 ## 步骤一、安装客户端
