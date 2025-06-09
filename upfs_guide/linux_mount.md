@@ -32,12 +32,21 @@
     |-----------------|-------------------------------------|
     | ```ro```              | 只读模式                                |
     | ```rw```              | 读写模式      |
+    | ```level=mini``` | 最低性能规格挂载，适合CPU1核，内存2GB的虚机使用 |
+    | ```level=max``` | 标准性能规格挂载 | 
+    | ```level=ultra``` | 增强性能规格挂载 |  
 
     示例：
     
     ```shell
-    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109/upfs-yc3ae1gwpwg /mnt  -o ro
+    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109/upfs-yc3ae1gwpwg /mnt  -o ro,level=mini 
     ```
+
+  - 如果挂载成功，最后一行会有如下的成功日志和客户端的版本信息：  
+   
+   ```shell
+   Mount success! fs_name:upfs-fsname version tag:public-v10.0-x86_64-skylake
+   ```
 
 ## 步骤三、挂载状态查看
 

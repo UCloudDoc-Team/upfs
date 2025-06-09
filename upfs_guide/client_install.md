@@ -1,57 +1,17 @@
 # UPFS客户端安装
 
 
-UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE的用户态文件系统访问。您需要在使用产品前先安装客户端，UCloud支持通过包管理器和客户端安装包两种方式安装。
+UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE的用户态文件系统访问。您需要在使用产品前先安装客户端，UCloud支持通过客户端安装包安装。  
 
-### 方式一、通过包管理器安装
-
-通过包管理器安装时请确保您操作系统的安装源为UCloud提供的官方操作系统镜像,且云主机类型为CPU类型云主机。
-
-对于使用CentOS8/7, Rocky8的用户，推荐使用该方式安装客户端，请注意公测期支持通过包管理器安装客户端的云主机操作系统镜像版本限制如下表，如果您的业务云主机操作系统版本不在下表之中，我们推荐您使用方式二安装客户端。
-
-| 操作系统类型 | 已支持包管理器安装的操作系统版本 |        
-|--------|------------------|
-| CentOS | CentOS 7.2 64位   |
-| CentOS | CentOS 7.3 64位   |
-| CentOS | CentOS 7.4 64位   |
-| CentOS | CentOS 7.6 64位   |
-| CentOS | CentOS 7.8 64位   |
-| CentOS | CentOS 7.9 64位   |
-| CentOS | CentOS 8.0 64位   |
-| Rocky| Rocky 8.5 64位    |
-
- - 如果是 CentOS 系统的主机，需要先执行以下命令保证包管理器版本为最新版本：
-
-    ```shell
-    yum clean all && yum makecache
-    ```
-
-   包管理器版本更新完成后，请执行以下命令安装UPFS客户端：
-
-    ```shell
-    yum install upfs_client
-    ```
-
- - 如果是 Rocky 系统的主机，需要先执行以下命令保证包管理器版本为最新版本：
-
-    ```shell
-    dnf clean all && dnf makecache
-    ```
-
-   包管理器版本更新完成后，请执行以下命令安装UPFS客户端：
-
-    ```shell
-    dnf install upfs_client
-    ```
-
-### 方式二、通过客户端安装包安装
-
-当系统安装源缺失或系统发现版本较低，无法通过包管理器安装依赖时，也可以通过下载提供的安装包手动安装客户端。
+### 下载安装包安装
 
 1.下载安装包。
 
 ```shell
+# 从外网下载
 wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-latest.tar.gz
+# 华北二地域从内网下载
+wget http://upfs-public-wlcb.internal-cn-wlcb.ufileos.com/upfs_client-public-latest.tar.gz 
 ```
 
 2.解压安装包。
@@ -72,6 +32,31 @@ cd ./upfs_client-public-latest && ./install.sh
 cd ./upfs_client-public-latest && sudo ./install.sh
 ```
 
+```shell
+install.sh 程序支持以下选项
+install.sh max  # 安装标准性能规格客户端
+install.sh mini # 安装最低性能规格客户端，能够在CPU 1核，内存2GB的虚机中挂载访问文件系统
+install.sh ultra # 安装增强性能规格客户端，能够提供更高的IOPS能力
+```
+
+### 安装客户端会对当前系统执行以下修改
+* 安装依赖包
+  - Centos/Rocky会调用yum安装libstdc++，libibverbs，libnl3，librdmacm，libuuid，numactl-libs  
+  - Ubuntu/Debian会调用apt安装libstdc++6libibverbs1，libnl-3-200，librdmacm1，，libuuid1，numactl，cron  
+* 安装程序
+  - /usr/local/bin目录下会创建pfs_client前缀的可执行文件和upfs_client软链文件  
+  - /usr/local/bin目录下会创建upfsiostat工具，用于观测文件系统实时性能  
+  - /usr/local/bin目录下会创建limit_upfs_client_log.sh脚本，用于清理程序的日志    
+  - /sbin目录下会创建mount.upfs工具，用于处理upfs类型文件系统的挂载  
+  - /etc目录下会创建以upfs_client前缀的配置文件  
+  - 创建/var/log/upfs/client目录，用于保存运行时的日志  
+* 安装日志清理定时任务
+  - 会在crontab中添加定时任务，用于日志的清理  
+```shell
+0 3 * * * /usr/local/bin/limit_upfs_client_log.sh 2>/dev/null >&2
+```
+
 注意事项：
-  - 通过Linux方式挂载或者K8s挂载时，在安装客户端时，可参考以上两种方式。
-  - 通过K8s挂载时安装客户端时，需要在所有的K8s work node 上安装好UPFS客户端。
+  - 在挂载文件系统之前，请参考以上方式安装客户端。 
+  - 通过K8s挂载时安装客户端时，需要在所有的K8s work node 上安装好UPFS客户端。 
+  - 安装程序会对当前系统进行修改，
