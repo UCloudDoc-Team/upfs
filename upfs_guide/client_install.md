@@ -42,7 +42,7 @@ install.sh ultra # 安装增强性能规格客户端，能够提供更高的IOPS
 ### 安装客户端会对当前系统执行以下修改
 * 安装依赖包
   - Centos/Rocky会调用yum安装libstdc++，libibverbs，libnl3，librdmacm，libuuid，numactl-libs  
-  - Ubuntu/Debian会调用apt安装libstdc++6libibverbs1，libnl-3-200，librdmacm1，，libuuid1，numactl，cron  
+  - Ubuntu/Debian会调用apt安装libstdc++6libibverbs1，libnl-3-200，librdmacm1，libuuid1，numactl，cron  
 * 安装程序
   - /usr/local/bin目录下会创建pfs_client前缀的可执行文件和upfs_client软链文件  
   - /usr/local/bin目录下会创建upfsiostat工具，用于观测文件系统实时性能  
