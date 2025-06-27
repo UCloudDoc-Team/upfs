@@ -6,7 +6,7 @@
 
 ## 步骤二、挂载文件系统
 
- - 若挂载的云主机操作系统为Ubuntu系统，必须使用sudo命令挂载，再次挂载前需要删除/var/tmp目录下的<resource_id>.sock与<resource_id>.sock.lock文件。
+ - 若挂载的云主机操作系统为Ubuntu系统，必须使用sudo命令挂载  
 
     ```shell
     sudo mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount 
@@ -45,8 +45,15 @@
   - 如果挂载成功，最后一行会有如下的成功日志和客户端的版本信息：  
    
    ```shell
-   Mount success! fs_name:upfs-fsname version tag:public-v10.0-x86_64-skylake
+   {"retcode":0,"message":"Mount success! fs_name:upfs-*** | version_tag:public-v14.0-x86_64-skylake"}
    ```
+
+ - 挂载UPFS子目录  
+   从public-v14.0版本之后，支持挂载UPFS文件系统内的子目录  
+   ```shell
+   mount -t upfs <mount_address1>,<mount_address2>/<resource_id>/<subdir>  /path/to/mount 
+   ```
+   subdir为UPFS内已经存在的子目录，挂载成功之后，本地/path/to/mnt访问的文件系统根路径为subdir  
 
 ## 步骤三、挂载状态查看
 
