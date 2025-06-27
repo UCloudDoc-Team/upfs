@@ -55,6 +55,14 @@
    ```
    subdir为UPFS内已经存在的子目录，挂载成功之后，本地/path/to/mnt访问的文件系统根路径为subdir  
 
+ - 同一个UPFS文件系统多次挂载  
+   public-v12.0版本开始，支持在一台主机内多次挂载UPFS文件系统  
+   public-v14.0版本优化了多次挂载的资源使用，同一个文件系统的请求处理默认会复用同一个客户端进程（建议该方式）    
+   如果在主机资源充足的前提下，可以指定参数`-o anew`强制启动新的客户端进程挂载，避免不同挂载之间的争用    
+   ```shell
+   mount -t upfs <mount_address1>,<mount_address2>/<resource_id>[/<subdir>]  /path/to/mount -o anew
+   ```
+
 ## 步骤三、挂载状态查看
 
 执行命令 ```df -h``` 即可查看挂载文件系统状态。若挂载成功，会看到upfs对于资源ID的条目，以及使用容量，挂载点等信息。
