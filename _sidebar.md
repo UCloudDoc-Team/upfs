@@ -25,3 +25,4 @@
 * [产品价格](/upfs/price)
 * [产品性能](/upfs/performance)
 * [FAQ](/upfs/faq)
+* [更新历史](/upfs/changelog)

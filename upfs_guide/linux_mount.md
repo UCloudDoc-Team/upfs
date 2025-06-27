@@ -6,7 +6,7 @@
 
 ## 步骤二、挂载文件系统
 
- - 若挂载的云主机操作系统为Ubuntu系统，必须使用sudo命令挂载，再次挂载前需要删除/var/tmp目录下的<resource_id>.sock与<resource_id>.sock.lock文件。
+ - 若挂载的云主机操作系统为Ubuntu系统，必须使用sudo命令挂载  
 
     ```shell
     sudo mount -t upfs <mount_address1>,<mount_address2>/<resource_id>  /path/to/mount 
@@ -32,12 +32,36 @@
     |-----------------|-------------------------------------|
     | ```ro```              | 只读模式                                |
     | ```rw```              | 读写模式      |
+    | ```level=mini``` | 最低性能规格挂载，适合CPU1核，内存2GB的虚机使用 |
+    | ```level=max``` | 标准性能规格挂载 | 
+    | ```level=ultra``` | 增强性能规格挂载 |  
 
     示例：
     
     ```shell
-    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109/upfs-yc3ae1gwpwg /mnt  -o ro
+    mount -t upfs 100.64.240.95:10109,100.64.240.97:10109/upfs-yc3ae1gwpwg /mnt  -o ro,level=mini 
     ```
+
+  - 如果挂载成功，最后一行会有如下的成功日志和客户端的版本信息：  
+   
+   ```shell
+   {"retcode":0,"message":"Mount success! fs_name:upfs-*** | version_tag:public-v14.0-x86_64-skylake"}
+   ```
+
+ - 挂载UPFS子目录  
+   从public-v14.0版本之后，支持挂载UPFS文件系统内的子目录  
+   ```shell
+   mount -t upfs <mount_address1>,<mount_address2>/<resource_id>/<subdir>  /path/to/mount 
+   ```
+   subdir为UPFS内已经存在的子目录，挂载成功之后，本地/path/to/mnt访问的文件系统根路径为subdir  
+
+ - 同一个UPFS文件系统多次挂载  
+   public-v12.0版本开始，支持在一台主机内多次挂载UPFS文件系统  
+   public-v14.0版本优化了多次挂载的资源使用，同一个文件系统的请求处理默认会复用同一个客户端进程（建议该方式）    
+   如果在主机资源充足的前提下，可以指定参数`-o anew`强制启动新的客户端进程挂载，避免不同挂载之间的争用    
+   ```shell
+   mount -t upfs <mount_address1>,<mount_address2>/<resource_id>[/<subdir>]  /path/to/mount -o anew
+   ```
 
 ## 步骤三、挂载状态查看
 
