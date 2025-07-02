@@ -4,7 +4,7 @@ UPFS仅支持Version 3版本的NFS协议，一下NFS均代指NFSv3。
 
 ## 前置条件
 
-如果创建的文件系统支持NFSv3协议挂载，会在UPFS查看页面的协议类型列显示"POSIX/NFS"。
+确认创建的文件系统支持NFSv3协议挂载，如果支持，在UPFS产品页面的协议类型这一列会显示"POSIX/NFS"。
 
 ![](/images/upfs_guide/nfs_support.png)
 
