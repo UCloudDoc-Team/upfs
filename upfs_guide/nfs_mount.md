@@ -1,6 +1,6 @@
 # NFS挂载
 
-UPFS仅支持Version 3版本的NFS协议，一下NFS均代指NFSv3。
+UPFS仅支持Version 3版本的NFS协议，以下NFS均代指NFSv3。
 挂载之前需要先创建NFS挂载点，具体见[NFS挂载点](/upfs_guide/nfs_mountpoint.md)
 Windows系统的NFS挂载方式见[Windows挂载](/upfs_guide/windows_mount.md)
 
