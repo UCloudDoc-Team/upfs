@@ -6,53 +6,55 @@
 
    2.若使用的K8s产品为自建K8s服务，具体挂载方式请参考下述挂载步骤。
 
-## 步骤一、安装客户端
+## 自建集群组件
 
-K8s方式挂载时，需要先在K8s所有的 work node上安装好UPFS的客户端，客户端安装步骤请查看[UPFS客户端安装](/upfs/upfs_guide/client_install.md)。
+自建k8s挂载使用UPFS依赖组件csi-upfs
 
+## 自建组件安装注意点
 
-## 步骤二、安装csi工具包
-  
-  需要在master节点安装csi工具包，详细步骤请见下文。
+- Pod网段，Service网段不能与公共服务网段重叠，各地域公共服务网段请参阅 [使用限制](https://docs.ucloud.cn/vpc/limit)
+- csi-udiks/cloudprovider容器内需要可以访问 http://api.service.ucloud.cn (用户网公共服务)
+- 如果节点上的kubelet目录与默认（`/var/lib/kubelet`）不一致，需要替换以下文件中的 `/var/lib/kubelet` 部分为实际kubelet目录
+  - uk8s-plugin/upfs/csi-node.yml
+  - uk8s-plugin/upfs/csi-controller.yml
 
-  1. 获取csi工具包，在获取csi工具包前，先确认当前K8s集群配置了弹性外网Eip，确认无误后执行以下命令获取csi工具包。
+## csi-upfs安装与部署
 
-```shell
-wget https://upfs-public.cn-bj.ufileos.com/csi-upfs.tar.gz
+#### 说明
+* 为了下载UPFS客户端,集群需要访问公网。
+* 若集群无法访问公网，需要修改`upfs/csi-node.yaml`文件， 修改变量`.spec.template.spec.initContainers.env.UPFS_CLIENT_DOWNLOAD_URL` 对应的value值为当前集群可下载的地址
+    * 譬如在 uhost 上的自建集群，可通过[UPFS文档](https://docs.ucloud.cn/upfs/upfs_guide/client_install)获取内网下载地址；
+```
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: upfslauncher-installer
+          env:
+            - name: UPFS_CLIENT_DOWNLOAD_URL
+              value: https://upfs.cn-sh2.ufileos.com/upfs_client-xxx.tar.gz #修改为集群可访问的下载地址
+
+```
+然后执行如下命令，部署upfs的csi
+``` shell
+kubectl apply -f upfs/
 ```
 
-  2. 执行以下命令解压csi工具包。
+## 安装storageclass
 
-```shell
-tar zxvf csi-upfs.tar.gz
+接下来进行创建StorageClass操作；创建StorageClass时需要注意参数:
+
+* uri：UPFS文件系统URL。URL详细规则请见[UPFS主要概念](https://docs.ucloud.cn/upfs/upfs_manual_instruction/concept?id=%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9furl)
+
+* path：表示需要挂载的UPFS子目录，默认值为`/`。如果指定的子目录在UPFS实例中尚不存在，则会被自动创建。
+
+* autoProvisionSubdir：upfs-csi版本 >= `upfs-25.06.27-cli-v14.0`时支持。默认不启用。 开启该参数且配置值为`true`之后，该StorageClass创建出的PVC可以实现数据分离。每个PVC会按如下规则在UPFS上创建对应的子目录: `<path>/<pvc-namespace>-<pvc-name>-<pv-name>`
+
+如当path配置为`/example`，且在`default` namespace中创建名为`logupfs-claim`的PVC时，UPFS实例中自动创建的目录名为
+
 ```
-  3. 在安装kubectl的node下执行以下命令安装csi工具包。
-
-```shell
-kubectl apply -f rbac-controller.yml
-kubectl apply -f rbac-node.yml
-kubectl apply -f csi-controller.yml
-kubectl apply -f csi-node.yml
+/example/default-logupfs-claim-pvc-ae961bc8-2c97-414e-9e7b-bde3e28efee9
 ```
-  4. 执行以下命令验证是否成功.
-
-```shell
-kubectl get po -A | grep upfs
-```
-
-   如果有如下图片展示POD的信息，且状态为 Running，说明安装成功。
-
-   ![](/images/upfs_guide/k8s_mount1.png)
-
-## 步骤三、创建UPFS文件系统K8s集群配置文件
-
-  需要在master节点创建UPFS文件系统K8s集群配置文件，详细步骤请见下文。
-
-  1. 这里需要创建StorageClass和PVC，配置文件参考下面的内容，并为配置文件命名 ```storageclass.yaml```（文件名可自定义），需要注意以下几点：
-  
-     - uri：文件系统URL（URL详细规则请见[主要概念](/upfs/upfs_manual_instruction/concept)中的文件系统URL部分）
-     - path：容器挂载UPFS文件系统的子目录，默认为 ```/```
-
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -61,9 +63,17 @@ metadata:
   name: csi-upfs
 provisioner: upfs.csi.ucloud.cn
 parameters:
-  uri: 100.64.240.97:10109,100.64.240.95:10109/upfs-y0gprzs5a12
-  path: /mnt
----
+  uri: 101.66.127.139:10109,101.66.127.140:10109/upfs-xxxx
+  path: /example
+  # autoProvisionSubdir: "true"
+```
+
+> ⚠️ StorageClass中的 `uri`、`path`、`autoProvisionSubdir` 参数均不建议在使用中修改，否则会影响pv对应的数据路径，导致业务读取不到对应的数据；
+
+## 创建PVC
+
+将如下内容保存到文件： `upfspvc.yml`
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -71,27 +81,36 @@ metadata:
 spec:
   storageClassName: csi-upfs
   accessModes:
-    - ReadWriteMany
+  - ReadWriteMany
   resources:
     requests:
-      storage: 10Gi  # UPFS存储空间理论上线较高，所以PV和PVC中的容量参数没有实际意义，这里的requests信息不会真实生效
+      storage: 10Gi # 因实际会将整个UPFS挂载到节点上，故此处的storage可任意配置并不做限制
 ```
 
-  2. 执行以下命令创建StorageClass和PVC，
+然后执行如下kubectl命令创建PVC：
 
 ```shell
-kubectl apply -f storageclass.yaml
+# kubectl apply -f upfspvc.yml
+persistentvolumeclaim/logupfs-claim created
 ```
 
-## 步骤四、创建POD使用UPFS文件系统
+创建完PVC后，可以发现PV与PVC已经绑定。
 
- 需要在master节点创建POD使用UPFS文件系统，详细步骤请见下文。
 
- 1. 创建一个POD来使用UPFS文件系统，配置文件内容参考如下，并为配置文件命名```pod.yaml```（文件名可自定义），需要注意以下几点：
+```
+# kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   REASON   AGE
+pvc-ae961bc8-2c97-414e-9e7b-bde3e28efee9   256Ti      RWX            Delete           Bound    default/logupfs-claim   csi-upfs                12s
+#
+# kubectl get pvc
+NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+logupfs-claim   Bound    pvc-ae961bc8-2c97-414e-9e7b-bde3e28efee9   256Ti      RWX            csi-upfs       12s
+```
 
-   - containers: 配置信息，根据实际情况配置
-   - mountPath: containers⾥挂载UPFS的路径
-   - claimName: 这⾥需要指定为步骤三中创建的UPFS PVC的名称
+> ⚠️ PVC中显示的容量，不做实际容量参考；PVC的真实容量务必以对应UPFS实例的容量为准；
+
+
+## 在Pod中挂载UPFS
 
 ```yaml
 apiVersion: v1
@@ -100,38 +119,47 @@ metadata:
   name: nginx-upfs
 spec:
   containers:
-    - name: nginx
-      image: uhub.service.ucloud.cn/ucloud/nginx:latest
-      ports:
-        - containerPort: 80
-      volumeMounts:
-        - name: test
-          mountPath: /data
+  - name: nginx
+    image: uhub.service.ucloud.cn/ucloud/nginx:latest
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: testupfs
+      mountPath: /data
   volumes:
-    - name: test
-      persistentVolumeClaim:
-        claimName: logupfs-claim
+  - name: testupfs
+    persistentVolumeClaim:
+      claimName: logupfs-claim
 ```
 
- 2. 执行以下命令创建POD：
+创建完Pod之后，我们可以通过`kubectl exec`命令进入容器，执行df命令查看Pod是否挂载到UPFS
 
-```shell
-kubectl apply -f pod.yaml
 ```
-UPFS支持多POD挂载访问UPFS文件系统，同理创建多POD配置文件如上。
-
-## 步骤五、验证POD是否正常运行
-
- 1. 执行以下命令进入上一步创建的POD。
-
-```shell
-kubectl exec -it <POD名字> /bin/bash
+# df -h
+Filesystem              Size  Used Avail Use% Mounted on
+...
+UPFS:upfs-xxxx          5.9T  8.5K  5.9T   1% /data
+...
 ```
- 2. 执行以下命令查看文件系统是否挂载，如下图，如果图中出现步骤三中需要挂载的文件系统资源ID表示挂载成功。
 
-```shell
-kubectl apply -f pod.yaml
+## 删除UPFS实例
+
+由于UPFS资源删除需要该UPFS处于未挂载状态，请先删除所有使用到UPFS PVC的Pod后再执行UPFS资源删除操作。
+
+执行以下命令来确认节点上是否还存在特定UPFS实例的挂载点：
 ```
-![](/images/upfs_guide/k8s_mount2.png)
+# mount |grep upfs-xxxx
+Filesystem              Size  Used Avail Use% Mounted on
+...
+UPFS:upfs-xxxx          5.9T  8.5K  5.9T   1% /data/kubelet/plugins/kubernetes.io/csi/upfs.csi.ucloud.cn/uri/101.66.127.139:10109,101.66.127.140:10109/upfs-xxxx
+```
+
+## 版本更新记录
+| 版本                    | 说明                                                       |
+|-------------------------|--------------------------------------------------------------|
+| upfs-25.07.18-cli-v14.3 | 修复同时创建多个pvc时，在upfs上创建子目录冲突的问题 |
+| upfs-25.06.27-cli-v14.3 | 修复upfs客户端从小于v12.0版本升级上来时的兼容性问题 |
+| upfs-25.06.27-cli-v14.1 | 修复upfs后端锁服务异常下调用锁请求导致客户端挂掉的问题 |
+| upfs-25.06.27-cli-v14.0 | 自动安装upfs v14.0客户端;<br>支持挂载UPFS的子目录;<br>支持自动以pvc名称在UPFS上创建子目录实现数据分离；<br>支持单Pod挂载多PVC、多Pod挂载同PVC、多Pod挂载多PVC。|
 
 **如果挂载文件系统有问题，请及时联系UCloud技术支持。**
