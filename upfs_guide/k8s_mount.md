@@ -20,6 +20,14 @@
 
 ## csi-upfs安装与部署
 
+### 下载链接
+```
+wget  https://docs.ucloud.cn/uk8s/yaml/volume/upfs-25.07.18-cli-v14.3/rbac-controller.yml
+wget  https://docs.ucloud.cn/uk8s/yaml/volume/upfs-25.07.18-cli-v14.3/rbac-node.yml
+wget  https://docs.ucloud.cn/uk8s/yaml/volume/upfs-25.07.18-cli-v14.3/csi-controller.yml
+wget  https://docs.ucloud.cn/uk8s/yaml/volume/upfs-25.07.18-cli-v14.3/csi-node.yml
+```
+以下假设所有yml文件都被放在upfs/文件夹下。
 #### 说明
 * 为了下载UPFS客户端,集群需要访问公网。
 * 若集群无法访问公网，需要修改`upfs/csi-node.yaml`文件， 修改变量`.spec.template.spec.initContainers.env.UPFS_CLIENT_DOWNLOAD_URL` 对应的value值为当前集群可下载的地址
