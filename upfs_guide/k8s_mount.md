@@ -12,8 +12,7 @@
 
 ## 自建组件安装注意点
 
-- Pod网段，Service网段不能与公共服务网段重叠，各地域公共服务网段请参阅 [使用限制](https://docs.ucloud.cn/vpc/limit)
-- csi-udiks/cloudprovider容器内需要可以访问 http://api.service.ucloud.cn (用户网公共服务)
+- Pod网段，Service网段不能与公共服务网段重叠，各地域公共服务网段请参阅 [公共服务网段](https://docs.ucloud.cn/vpc/limit)
 - 如果节点上的kubelet目录与默认（`/var/lib/kubelet`）不一致，需要替换以下文件中的 `/var/lib/kubelet` 部分为实际kubelet目录
   - uk8s-plugin/upfs/csi-node.yml
   - uk8s-plugin/upfs/csi-controller.yml
@@ -29,8 +28,8 @@ wget  https://docs.ucloud.cn/uk8s/yaml/volume/upfs-25.07.18-cli-v14.3/csi-node.y
 ```
 以下假设所有yml文件都被放在upfs/文件夹下。
 #### 说明
-* 为了下载UPFS客户端,集群需要访问公网。
-* 若集群无法访问公网，需要修改`upfs/csi-node.yaml`文件， 修改变量`.spec.template.spec.initContainers.env.UPFS_CLIENT_DOWNLOAD_URL` 对应的value值为当前集群可下载的地址
+* 为了下载UPFS客户端，集群需要访问公网。
+* 若集群无法访问公网，需要修改`upfs/csi-node.yaml`文件，修改变量`.spec.template.spec.initContainers.env.UPFS_CLIENT_DOWNLOAD_URL` 对应的value值为当前集群可下载的地址
     * 譬如在 uhost 上的自建集群，可通过[UPFS文档](https://docs.ucloud.cn/upfs/upfs_guide/client_install)获取内网下载地址；
 ```
 spec:
@@ -43,7 +42,7 @@ spec:
               value: https://upfs.cn-sh2.ufileos.com/upfs_client-xxx.tar.gz #修改为集群可访问的下载地址
 
 ```
-然后执行如下命令，部署upfs的csi
+然后执行如下命令，部署UPFS的csi
 ``` shell
 kubectl apply -f upfs/
 ```
@@ -76,11 +75,17 @@ parameters:
   # autoProvisionSubdir: "true"
 ```
 
+执行以下命令创建storageclass
+
+```
+kubectl apply -f storageclass.yml
+```
+
 > ⚠️ StorageClass中的 `uri`、`path`、`autoProvisionSubdir` 参数均不建议在使用中修改，否则会影响pv对应的数据路径，导致业务读取不到对应的数据；
 
 ## 创建PVC
 
-将如下内容保存到文件： `upfspvc.yml`
+将如下内容保存到文件： `upfspvc.yaml`
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -98,8 +103,8 @@ spec:
 然后执行如下kubectl命令创建PVC：
 
 ```shell
-# kubectl apply -f upfspvc.yml
-persistentvolumeclaim/logupfs-claim created
+kubectl apply -f upfspvc.yml
+#persistentvolumeclaim/logupfs-claim created
 ```
 
 创建完PVC后，可以发现PV与PVC已经绑定。
@@ -165,9 +170,9 @@ UPFS:upfs-xxxx          5.9T  8.5K  5.9T   1% /data/kubelet/plugins/kubernetes.i
 ## 版本更新记录
 | 版本                    | 说明                                                       |
 |-------------------------|--------------------------------------------------------------|
-| upfs-25.07.18-cli-v14.3 | 修复同时创建多个pvc时，在upfs上创建子目录冲突的问题 |
-| upfs-25.06.27-cli-v14.3 | 修复upfs客户端从小于v12.0版本升级上来时的兼容性问题 |
-| upfs-25.06.27-cli-v14.1 | 修复upfs后端锁服务异常下调用锁请求导致客户端挂掉的问题 |
-| upfs-25.06.27-cli-v14.0 | 自动安装upfs v14.0客户端;<br>支持挂载UPFS的子目录;<br>支持自动以pvc名称在UPFS上创建子目录实现数据分离；<br>支持单Pod挂载多PVC、多Pod挂载同PVC、多Pod挂载多PVC。|
+| upfs-25.07.18-cli-v14.3 | 修复同时创建多个pvc时，在UPFS上创建子目录冲突的问题 |
+| upfs-25.06.27-cli-v14.3 | 修复UPFS客户端从低于v12.0版本升级至高版本时的兼容性问题 |
+| upfs-25.06.27-cli-v14.1 | 修复UPFS后端锁服务异常下调用锁请求导致客户端崩溃的问题 |
+| upfs-25.06.27-cli-v14.0 | 自动安装UPFS v14.0客户端;<br>支持挂载UPFS的子目录;<br>支持自动以pvc名称在UPFS上创建子目录实现数据分离；<br>支持单Pod挂载多PVC、多Pod挂载同PVC、多Pod挂载多PVC。|
 
 **如果挂载文件系统有问题，请及时联系UCloud技术支持。**
