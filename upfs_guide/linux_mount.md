@@ -35,6 +35,10 @@
     | ```level=mini``` | 最低性能规格挂载，适合CPU1核，内存2GB的虚机使用 |
     | ```level=max``` | 标准性能规格挂载 | 
     | ```level=ultra``` | 增强性能规格挂载 |  
+    | ```forbidden_delete``` | 禁止删除文件/目录 |  
+    | ```forbidden_rename``` | 禁止mv文件/目录 |  
+    | ```forbidden_overwrite``` | 禁止文件的覆盖写 |  
+    | ``` forbidden_truncate``` | 禁止文件的Truncate | 
 
     示例：
     

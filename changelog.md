@@ -1,4 +1,17 @@
-## public-v14.0（当前版本）  
+## public-v14.7 (当前版本)  
+### 新增功能：
+支持挂载参数forbidden_delete, forbidden_rename, forbidden_overwrite, forbidden_truncate  
+### 优化  
+优化客户端启动时的CPU和内存开销  
+### 稳定性提升  
+修复挂载不存在子目录时，mount进程会卡住的问题  
+修复同一个实例多挂载，卸载之后线程计数不一致的问题  
+
+## public-v14.3  
+### 稳定性提升  
+修复和版本低于v12.0的客户端的兼容性问题  
+
+## public-v14.0  
 ### 新增功能：
 优化目录list性能   
 支持文件系统内子目录挂载    
