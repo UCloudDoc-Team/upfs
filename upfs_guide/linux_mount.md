@@ -38,7 +38,7 @@
     | ```forbidden_delete``` | 禁止删除文件/目录 |  
     | ```forbidden_rename``` | 禁止mv文件/目录 |  
     | ```forbidden_overwrite``` | 禁止文件的覆盖写 |  
-    | ``` forbidden_truncate``` | 禁止文件的Truncate | 
+    | ```forbidden_truncate``` | 禁止文件的Truncate | 
 
     示例：
     
