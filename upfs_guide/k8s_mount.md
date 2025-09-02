@@ -22,7 +22,6 @@ spec:
           env:
             - name: UPFS_CLIENT_DOWNLOAD_URL
               value: https://upfs.cn-sh2.ufileos.com/upfs_client-xxx.tar.gz #修改为集群可访问的下载地址
-
 ```
 
 **如果挂载文件系统有问题，请及时联系UCloud技术支持。**
