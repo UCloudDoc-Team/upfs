@@ -1,6 +1,6 @@
 ## public-v14.7 (当前版本)  
 ### 新增功能：
-支持挂载参数forbidden_delete, forbidden_rename, forbidden_overwrite, forbidden_truncate  
+新增禁止删除功能，支持挂载参数forbidden_delete, forbidden_rename, forbidden_overwrite, forbidden_truncate  
 ### 优化  
 优化客户端启动时的CPU和内存开销  
 ### 稳定性提升  
