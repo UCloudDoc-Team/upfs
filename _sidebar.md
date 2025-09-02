@@ -15,6 +15,7 @@
     * [查询文件系统详情](/upfs/upfs_guide/describe)
   * 挂载文件系统
     * [挂载概述](/upfs/upfs_guide/overview_mount)
+    * [安装客户端](/upfs/upfs_guide/client_install)
     * [Linux](/upfs/upfs_guide/linux_mount)
     * [K8s](/upfs/upfs_guide/k8s_mount)
     * [自动挂载](/upfs/upfs_guide/auto_mount)
