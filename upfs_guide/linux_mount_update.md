@@ -46,6 +46,11 @@ grep "UPFS" "/proc/$pid/mounts" 2>/dev/null | sed "s/^/PID $pid: /"
 done
 ```
 
+输出格式如下
+```bash
+PID 551864: UPFS:upfs-1112arqyyul5 /runtime/sock-dir/io.containerd.runtime.v2.task/k8s.io/11c5102e02aaed8409eca2dd5d7ba16ad02cba6374a7fb15f01bc82393f10963/rootfs/host/mnt/upfs fuse.UPFS:upfs-1112arqyyul5 rw,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+```
+
 > 说明：  
 > - `lsns -t mnt` 罗列系统中的 mount namespaces；  
 > - 上述脚本逐个读取各命名空间代表进程的 `/proc/<pid>/mounts`；  
@@ -71,13 +76,7 @@ done
 ### 4.1 获取并安装新客户端
 安装最新版本客户端，参考[UPFS客户端安装](/upfs/upfs_guide/client_install.md)。
 
-### 4.2 选择合适的配置文件
-新版本客户端提供 3 种配置文件以适配不同主机规格，**默认使用 `max`**。  
-若主机配置较低（例如 **1 核 CPU / 1 GB 内存**），建议切换为 **`mini`** 配置：
-
-- 修改 `/usr/sbin/mount.upfs` 中的 `DEFAULT_LEVEL` 变量为合适的级别（如 `mini`）。
-
-### 4.3 使用原挂载参数启动新版本客户端
+### 4.2 使用原挂载参数启动新版本客户端
 按照**原有挂载参数**（挂载点路径、读写权限、`upfs-id` 等）执行相应的 `mount` 命令，启动新版本 `upfs_client`，完成升级与切换。
 
 ---
