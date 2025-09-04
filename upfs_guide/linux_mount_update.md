@@ -48,7 +48,7 @@ done
 
 输出格式如下
 ```bash
-PID 551864: UPFS:upfs-1112arqyyul5 /runtime/sock-dir/io.containerd.runtime.v2.task/k8s.io/11c5102e02aaed8409eca2dd5d7ba16ad02cba6374a7fb15f01bc82393f10963/rootfs/host/mnt/upfs fuse.UPFS:upfs-1112arqyyul5 rw,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
+PID 551864: UPFS:upfs-xxxx /namespace/mnt/ fuse.UPFS:upfs-xxxxx rw,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other 0 0
 ```
 
 > 说明：  
