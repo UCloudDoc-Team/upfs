@@ -1,8 +1,8 @@
 # NFS挂载
 
 UPFS仅支持Version 3版本的NFS协议，以下NFS均代指NFSv3。
-挂载之前需要先创建NFS挂载点，具体见[NFS挂载点](/upfs_guide/nfs_mountpoint.md)
-Windows系统的NFS挂载方式见[Windows挂载](/upfs_guide/windows_mount.md)
+挂载之前需要先创建NFS挂载点，具体见[NFS挂载点](/upfs/upfs_guide/nfs_mountpoint.md)
+Windows系统的NFS挂载方式见[Windows挂载](/upfs/upfs_guide/windows_mount.md)
 
 ## 步骤一、安装 NFS 客户端
 如果是 CentOS/Rocky 系统的主机，请执行以下命令安装 NFS 客户端：
@@ -19,7 +19,7 @@ sudo yum install nfs-utils
 
 ## 步骤二、挂载文件系统
 
-请您根据[NFS挂载点管理](/upfs_guide/nfs_mountpoint.md)操作中显示的挂载点信息进行操作。下面以文件系统 ID 为 upfs-1djk2eyon69i 的文件系统为例展示挂载操作，假设其挂载点 IP 为 10.59.105.106(实际操作时请用您要使用的文件系统 ID 和挂载点 IP 替代示例中的相关参数)。
+请您根据[NFS挂载点管理](/upfs/upfs_guide/nfs_mountpoint.md)操作中显示的挂载点信息进行操作。下面以文件系统 ID 为 upfs-1djk2eyon69i 的文件系统为例展示挂载操作，假设其挂载点 IP 为 10.59.105.106(实际操作时请用您要使用的文件系统 ID 和挂载点 IP 替代示例中的相关参数)。
 
 执行以下命令进行挂载
 ```
