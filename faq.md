@@ -26,5 +26,4 @@ ls -l /proc/`pidof upfs_client`/exe
 如果有多个UPFS挂载，请按照upfs-*前缀的文件系统名筛选进程    
 
 ### 如何进行客户端版本的升级？  
-请参照[客户端安装](/upfs/upfs_guide/client_install)章节下载安装最新版本。如果当前已经有挂载，需要[卸载文件系统](/upfs/upfs_guide/linux_umount)，再[重新挂载](/upfs/upfs_guide/linux_mount)。    
-请确认挂载成功的输出的版本信息和最新版本是否一致。  
+请参照[客户端升级](/upfs/upfs_guide/linux_mount_update.md)章节。

@@ -11,7 +11,9 @@ UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE�
 # 从外网下载
 wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-latest.tar.gz
 # 华北二地域从内网下载
-wget http://upfs-public-wlcb.internal-cn-wlcb.ufileos.com/upfs_client-public-latest.tar.gz 
+wget http://upfs-public-wlcb.internal-cn-wlcb.ufileos.com/upfs_client-public-latest.tar.gz
+# 上海二地域从内网下载
+wget http://upfs-public-sh2-01.internal-cn-sh2-01.ufileos.com/upfs_client-public-latest.tar.gz
 ```
 
 2.解压安装包。
@@ -42,7 +44,7 @@ install.sh ultra # 安装增强性能规格客户端，能够提供更高的IOPS
 ### 安装客户端会对当前系统执行以下修改
 * 安装依赖包
   - Centos/Rocky会调用yum安装libstdc++，libibverbs，libnl3，librdmacm，libuuid，numactl-libs  
-  - Ubuntu/Debian会调用apt安装libstdc++6libibverbs1，libnl-3-200，librdmacm1，libuuid1，numactl，cron  
+  - Ubuntu/Debian会调用apt安装libstdc++6，libibverbs1，libnl-3-200，librdmacm1，libuuid1，numactl，cron  
 * 安装程序
   - /usr/local/bin目录下会创建pfs_client前缀的可执行文件和upfs_client软链文件  
   - /usr/local/bin目录下会创建upfsiostat工具，用于观测文件系统实时性能  
@@ -58,5 +60,5 @@ install.sh ultra # 安装增强性能规格客户端，能够提供更高的IOPS
 
 注意事项：
   - 在挂载文件系统之前，请参考以上方式安装客户端。 
-  - 通过K8s挂载时安装客户端时，需要在所有的K8s work node 上安装好UPFS客户端。 
-  - 安装程序会对当前系统进行修改，
+  - 安装客户端需要root权限。  
+  - 安装程序会对当前系统进行修改。  

@@ -16,9 +16,11 @@
   * 挂载文件系统
     * [挂载概述](/upfs/upfs_guide/overview_mount)
     * POSIX挂载
+      * [安装客户端](/upfs/upfs_guide/client_install)
       * [Linux](/upfs/upfs_guide/linux_mount)
       * [K8s](/upfs/upfs_guide/k8s_mount)
       * [自动挂载](/upfs/upfs_guide/auto_mount)
+      * [Linux客户端升级](/upfs/upfs_guide/linux_mount_update.md)
     * NFSv3挂载
       * [Linux](/upfs/upfs_guide/nfs_mount)
       * [Windows](/upfs/upfs_guide/windows_mount)
