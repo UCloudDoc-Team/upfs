@@ -15,14 +15,19 @@
     * [查询文件系统详情](/upfs/upfs_guide/describe)
   * 挂载文件系统
     * [挂载概述](/upfs/upfs_guide/overview_mount)
-    * [安装客户端](/upfs/upfs_guide/client_install)
-    * [Linux](/upfs/upfs_guide/linux_mount)
-    * [K8s](/upfs/upfs_guide/k8s_mount)
-    * [自动挂载](/upfs/upfs_guide/auto_mount)
-    * [Linux客户端升级](/upfs/upfs_guide/linux_mount_update.md)
+    * POSIX挂载
+      * [安装客户端](/upfs/upfs_guide/client_install)
+      * [Linux](/upfs/upfs_guide/linux_mount)
+      * [K8s](/upfs/upfs_guide/k8s_mount)
+      * [自动挂载](/upfs/upfs_guide/auto_mount)
+      * [Linux客户端升级](/upfs/upfs_guide/linux_mount_update.md)
+    * NFSv3挂载
+      * [Linux](/upfs/upfs_guide/nfs_mount)
+      * [Windows](/upfs/upfs_guide/windows_mount)
   * 卸载文件系统
     * [Linux](/upfs/upfs_guide/linux_umount)
     * [K8s](/upfs/upfs_guide/k8s_umount)
+    * [Windows](/upfs/upfs_guide/windows_umount)
 * [其他功能](/upfs/other)
 * [产品价格](/upfs/price)
 * [产品性能](/upfs/performance)
