@@ -10,9 +10,9 @@ UPFS是支持POSIX文件语义的分布式并行文件系统，使用基于FUSE�
 ```shell
 # 从外网下载
 wget https://upfs-public.cn-bj.ufileos.com/upfs_client-public-latest.tar.gz
-# 华北二地域从内网下载
+# 华北（乌兰察布）地域从内网下载
 wget http://upfs-public-wlcb.internal-cn-wlcb.ufileos.com/upfs_client-public-latest.tar.gz
-# 上海二地域从内网下载
+# 华东（上海2）地域从内网下载
 wget http://upfs-public-sh2-01.internal-cn-sh2-01.ufileos.com/upfs_client-public-latest.tar.gz
 ```
 
