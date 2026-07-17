@@ -1,12 +1,8 @@
 ## public-v14.16 (当前版本)  
 ### 新增功能：
-支持fallocate mode  
+支持部分fallocate mode  
 ### 稳定性提升  
-修复Ubuntu 24.04删除目录卡在setattr请求的问题
-
-## public-v14.11
-### 新增功能：
-支持挂载选项指定rdma/tcp  
+修复Ubuntu 24.04删除目录卡住的问题
 
 ## public-v14.7
 ### 新增功能：
