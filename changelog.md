@@ -1,4 +1,14 @@
-## public-v14.7 (当前版本)  
+## public-v14.16 (当前版本)  
+### 新增功能：
+支持fallocate mode  
+### 稳定性提升  
+修复Ubuntu 24.04删除目录卡在setattr请求的问题
+
+## public-v14.11
+### 新增功能：
+支持挂载选项指定rdma/tcp  
+
+## public-v14.7
 ### 新增功能：
 新增禁止删除功能，支持挂载参数forbidden_delete, forbidden_rename, forbidden_overwrite, forbidden_truncate  
 ### 优化  
